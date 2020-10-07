@@ -16,4 +16,4 @@ https://pydicom.github.io/pydicom/stable/auto_examples/input_output/plot_read_di
 https://dicom.innolitics.com/ciods/ct-image
 > O crop será conforme ilustra a figura abaixo, para cada quadrado amarelo, você irá calcular a média dos numeros de hounsfield e o desvio padrão de cada região.
 
-![telas](https://git.png)
+![telas](https://raw.githubusercontent.com/safetyrad/vagapython/main/sample.png)
