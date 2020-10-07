@@ -4,8 +4,10 @@ Teste para a vaga de estágio em Python.
 
 Você irá escrever uma classe que:
  - Realiza a leitura das imagens DICOM (DICOM é um formato de imagem usado na medicina)
- - Para cada imagem realizar 5 crops e calcular a média e desvio padrão dos Numeros de Housfield.
- - Retornar um objeto json contendo uma identificação única da imagem, uma da região onde foi realizados os cáluclos.
+
+ - Para cada imagem realizar 5 crops e calcular a média e desvio padrão dos Números de Housfield.
+
+ - Retornar um objeto json contendo uma identificação única da imagem e cada uma  das regiões onde foi realizados os cálculo.
 
 Observações: 
 > Para realizar a leitura dicom, você irá usar a biblioteca pydicom:
