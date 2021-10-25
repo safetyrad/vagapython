@@ -1,5 +1,8 @@
 
 # Vaga Python
+
+Rodar **"pip install -r requirements.txt"** para baixar as dependencia
+
 Teste para a vaga de estágio em Python.
 
 Você irá escrever uma classe que:
