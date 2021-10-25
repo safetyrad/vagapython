@@ -1,3 +1,4 @@
+# -*- coding: utf-8 -*-s
 import uuid
 import matplotlib.pyplot as plt
 from matplotlib import patches
@@ -14,18 +15,19 @@ class ProcessDicom:
         path: caminho para o aquivo dicom
     
     Methods
-        PlotDicomImage()
+        plot_dicom_image()
             Gera uma visualizacao grafica com o arquivo dicom com os cortes nas cinco posicoes 
         
-        GetInfoJson()
+        get_info_json()
             Gera um objeto json com as informaçoes do arquivo dicom
     '''
 
-    def __init__(self, path):
+    def __init__(self, path, crop_size):
         self.path = path
-        self.crop_size = 42
+        self.crop_size = crop_size
         self.data_set = pydicom.dcmread(path)
-        self.rescale_intercept = self.data_set[0x0028, 0x1052].value
+        #https://www.dicomlibrary.com/dicom/dicom-tags/
+        self.rescale_intercept = self.data_set[0x0028, 0x1052].value 
         self.rescale_slope = self.data_set[0x0028, 0x1053].value
         self.pixel_array = self.data_set.pixel_array
         self.arr_size = self.pixel_array.shape
@@ -87,16 +89,17 @@ class ProcessDicom:
         )
         self.botton_right_mean = np.mean(self.botton_right)
         self.botton_right_std = np.std(self.botton_right)
-    
-    def PlotDicomImage(self):
-        '''Class que exibe dicom com os crops'''
-        positions = [
+
+        self.positions = [
             'Centro \n média: {:.2f}'.format(self.center_mean) +'\n std: {:.2f}'.format(self.center_std),
             'Superior esquerda \n média: {:.2f}'.format(self.top_left_mean) +'\n std: {:.2f}'.format(self.top_left_std),
             'Superior direita \n média: {:.2f}'.format(self.top_right_mean) +'\n std: {:.2f}'.format(self.top_right_std),
             'Inferior esquerda \n média: {:.2f}'.format(self.botton_left_mean) +'\n std: {:.2f}'.format(self.botton_left_std),
             'Inferior direita \n média: {:.2f}'.format(self.botton_right_mean) +'\n std: {:.2f}'.format(self.botton_right_std)
         ]
+    
+    def plot_dicom_image(self):
+        '''Funcao que exibe dicom com os crops'''
 
         #__init__(xy, width, height, angle=0.0, **kwargs)
         fig, ax = plt.subplots()
@@ -111,11 +114,11 @@ class ProcessDicom:
                 fc ='none',
                 lw=0.9,
                 ec='y')
-            
+
             ax.add_patch(crop)
             ax.text(self.xy[i][0]+20, 
                     self.xy[i][1]-25,
-                    positions[i], 
+                    self.positions[i], 
                     ha='center',
                     va='center',
                     size=6, 
@@ -123,13 +126,11 @@ class ProcessDicom:
                     color='r',
                     fontweight='bold')
 
-            
             i+= 1
         ax.set_title(f'Imagem: '+ title)      
         plt.show()
     
-    def GetInfo(self, i):
-            
+    def get_info(self, i):     
         patient_info = {
             "IMG"+str(i):{
                 "title":self.path.split("/")[-1],
