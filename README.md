@@ -1,5 +1,10 @@
 
 # Vaga Python
+
+1.  Rodar **"pip install -r requirements.txt"** para baixar as dependencias
+
+2. Para rodar o projeto, dentro da pasta principal, executar **"python src/main.py"**
+
 Teste para a vaga de estágio em Python.
 
 Você irá escrever uma classe que:
