@@ -6,7 +6,7 @@ import json
 
 
 #Caminho para os arquivos dicom
-path = './img'
+path = 'img'
 data_paths = [i for i in (os.path.join(path, f) for f in os.listdir(path)) if os.path.isfile(i)]
 
 
