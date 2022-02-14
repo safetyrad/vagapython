@@ -21,7 +21,7 @@ class Image:
         
     def crops_info(self):
         '''
-        Returns hu mean and std as a dictionary
+        Returns HU mean and std as a dictionary
         '''
         crops_data = hounsfield(self.path, self.file)
         data = {'title': self.file, 'id': f'{uuid.uuid4()}', 'regions': {}}
@@ -35,7 +35,7 @@ class Image:
 
     def json_data(self):
         '''
-        Returns hu mean and std as json object
+        Returns HU mean and std as json object
         '''
         data = Image.crops_info(self)
         data_json = json.dumps(data, indent=2)
